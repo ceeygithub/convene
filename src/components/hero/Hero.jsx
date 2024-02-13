@@ -9,9 +9,8 @@ const Hero = () => {
 
   const handleGetStarted = () => {
     // Redirect to the sign-up page
-    // history.push('/signup');
+   
      navigate('./signUp');
-    // Alternatively, you can use history.push('/signin') for the sign-in page
   };
 
   return (

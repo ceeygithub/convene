@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound';
 import Auth from './services/Auth';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import ResetPassword from './pages/ResetPassword';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/ResetPassword" element={<ResetPassword />} />
         <Route path="/explore" element={<Explore />} />
         {isAuthenticated && (
           <Route path="/create-meetup" element={<CreateMeetup />} />

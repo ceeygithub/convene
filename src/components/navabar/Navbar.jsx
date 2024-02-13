@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NavCSS from './Navbar.module.css';
-import logoImg from '../../assets/Capture4-removebg-preview.png'
+import logoImg from '../../assets/Capture4-removebg-preview.png';
 
 const Navbar = ({ isAuthenticated, isAdmin }) => {
   return (
