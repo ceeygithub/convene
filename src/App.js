@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/navabar/Navbar'; 
+import Home from './pages/Home';
+import Explore from './pages/Explore';
+import CreateMeetup from './pages/CreateMeetup';
+import Profile from './pages/Profile';
+import NotFound from './pages/NotFound';
+import Auth from './services/Auth';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+
+const App = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    setUser(Auth.login());
+  }, []);
+
+  const isAuthenticated = !!user;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar isAuthenticated={isAuthenticated} isAdmin={user?.isAdmin || false} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/explore" element={<Explore />} />
+        {isAuthenticated && (
+          <Route path="/create-meetup" element={<CreateMeetup />} />
+        )}
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
