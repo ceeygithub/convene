@@ -20,11 +20,12 @@ const App = () => {
     setUser(Auth.login());
   }, []);
 
-  const isAuthenticated = !!user;
-
+  const isAuthenticated = !user;
+  const isAdmin = user?.isAdmin || false;
   return (
     <Router>
-      <Navbar isAuthenticated={isAuthenticated} isAdmin={user?.isAdmin || false} />
+      {/* <Navbar isAuthenticated={isAuthenticated} isAdmin={user?.isAdmin || false} /> */}
+      <Navbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />

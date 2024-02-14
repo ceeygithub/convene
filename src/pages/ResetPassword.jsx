@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PasswordReset from '../assets/10259342_4359227.svg';
 
 const ResetPassword = () => {
   const [email, setEmail] = useState('');
@@ -23,18 +24,19 @@ const ResetPassword = () => {
       ) : (
       <div className="LoginPageContainer">
         <div className="LoginPageInnerContainer">
-          <div className="ImageContianer">
-            <img src="https://i.imgur.com/MYZd7of.png" className="GroupImage" alt="Group" />
-          </div>
+            <div className="ImageContianer">
+            <img src={  PasswordReset} className="GroupImage"  alt="GroupImage"/>
+            
+        </div>
           <div className="LoginFormContainer">
             <div className="LoginFormInnerContainer">
-              <div className="LogoContainer">
+              {/* <div className="LogoContainer">
                 <img
                   src="https://www.pngkey.com/png/full/529-5291672_sample-logo-png-transparent-background.png"
                   className="logo"
                   alt="Convene Logo"
                 />
-              </div>
+              </div> */}
               <header className="header">Log in</header>
               <header className="subHeader">
                  <h1>Reset Password</h1>

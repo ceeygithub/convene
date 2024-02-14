@@ -1,11 +1,24 @@
-// Navbar.js
+
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import NavCSS from './Navbar.module.css';
-import logoImg from '../../assets/Capture4-removebg-preview.png';
+// import logoImg from '../../assets/Capture4-removebg-preview.png';
+import logoImg from '../../assets/Screenshot_2024-02-14_024738-removebg-preview.png';
+// import home from '../../pages/Home';
 
+
+  
 const Navbar = ({ isAuthenticated, isAdmin }) => {
+
+    const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // Implement your logout logic here
+    // Example: Clear user session, redirect to login page
+    console.log('Logout');
+    navigate('/');
+  };
   return (
     <nav className={NavCSS.navbar}>
       <div className={NavCSS.navbarContainer}>
@@ -17,14 +30,25 @@ const Navbar = ({ isAuthenticated, isAdmin }) => {
           <Link to="/explore" className={NavCSS.navbarLink}>
             Explore
           </Link>
-          {isAdmin && (
-            <Link to="/create-meetup" className={NavCSS.navbarLink}>
-              Create Meetup
+        
+        
+            {isAuthenticated && (
+          <>
+            <li><Link to="/profile">Profile</Link></li>
+               <Link to="/" className={NavCSS.navbarLink} onClick={ handleLogout}>
+             Log out
             </Link>
-          )}
-          <Link to="/profile" className={NavCSS.navbarLink}>
-            My Profile
-          </Link>
+            {isAdmin && <li><Link to="/create-meetup">Create Meetup</Link></li>}
+            <li><button onClick={handleLogout}>Logout</button></li>
+          </>
+        )}
+           {!isAuthenticated && (
+          <>
+         <Link to="/signup"  className={NavCSS.navbarLink}>Sign Up</Link>
+          <Link to="/signin" className={`${NavCSS.navbarLink} ${NavCSS.signin}`}>Sign In</Link>
+
+          </>
+        )}
         </div>
       </div>
     </nav>

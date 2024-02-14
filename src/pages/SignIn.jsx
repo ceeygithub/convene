@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../styles/SignIn.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import SigninSvg from '../assets/13245914_5186395.svg';
+// import logoImg from '../assets/Capture4-removebg-preview.png';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -34,19 +36,17 @@ const SignIn = () => {
     <>
       <div className="LoginPageContainer">
         <div className="LoginPageInnerContainer">
-          <div className="ImageContianer">
-            <img src="https://i.imgur.com/MYZd7of.png" className="GroupImage" alt="Group" />
-          </div>
+     
+             <div className="ImageContianer">
+            <img src={SigninSvg} className="GroupImage"  alt="GroupImage"/>
+            
+        </div>
           <div className="LoginFormContainer">
             <div className="LoginFormInnerContainer">
-              <div className="LogoContainer">
-                <img
-                  src="https://www.pngkey.com/png/full/529-5291672_sample-logo-png-transparent-background.png"
-                  className="logo"
-                  alt="Convene Logo"
-                />
-              </div>
-              <header className="header">Log in</header>
+         {/* <div className='LoginLogo'>
+                      <img src={ logoImg} alt="" className='logoImg'/> Convene
+                      </div>  */}
+              <header className="header">Sign in</header>
               <header className="subHeader">
                 Welcome back to <b>Convene!</b> Please Enter your Details
               </header>

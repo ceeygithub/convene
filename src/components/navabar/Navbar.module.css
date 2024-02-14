@@ -1,4 +1,3 @@
-/* Navbar.css */
 
 .navbar {
     background-color: #ffffff;
@@ -36,9 +35,10 @@ height: auto;
     text-decoration: none;
 }
 
-.navbarLinks {
+/* .navbarLinks {
     display: flex;
-}
+  
+} */
 
 .navbarLink {
     margin-right: 20px;
@@ -54,4 +54,17 @@ height: auto;
 .navbarLink:hover {
     color: #ff4500;
     /* Change color on hover */
+}
+.signin{
+    width: 100%;
+        padding: 10px;
+        border-radius: 20px;
+        font-weight: bold;
+        color: white;
+        background-color: #2ecc71;
+        border: 0px;
+        outline: 0px;
+        cursor: pointer;
+        text-align: center;
+        
 }

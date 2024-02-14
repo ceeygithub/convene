@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SignupSvg from '../assets/Sign up-bro.svg';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import logoImg from '../assets/Capture4-removebg-preview.png';
+// import logoImg from '../assets/Capture4-removebg-preview.png';
 import { CiUser } from "react-icons/ci";
 
 const SignUp = () => {
@@ -46,9 +46,9 @@ const navigate = useNavigate();
             <div className="LoginFormInnerContainer">
                 <div className="LogoContainer">
                    
-                    <div className='LoginLogo'>
+                    {/* <div className='LoginLogo'>
                       <img src={ logoImg} alt="" className='logoImg'/> Convene
-                      </div> 
+                      </div>  */}
                 </div>
                 <header className="header">Sign Up</header>
                 <header className="subHeader">Welcome to <b>Convene!</b> Please Enter your Details</header>
