@@ -3,8 +3,8 @@
 import React from 'react';
 import { Link , useNavigate} from 'react-router-dom';
 import NavCSS from './Navbar.module.css';
-// import logoImg from '../../assets/Capture4-removebg-preview.png';
 import logoImg from '../../assets/Screenshot_2024-02-14_024738-removebg-preview.png';
+import Auth from '../../services/Auth';
 // import home from '../../pages/Home';
 
 
@@ -16,6 +16,7 @@ const Navbar = ({ isAuthenticated, isAdmin }) => {
   const handleLogout = () => {
     // Implement your logout logic here
     // Example: Clear user session, redirect to login page
+     Auth.logout();
     console.log('Logout');
     navigate('/');
   };

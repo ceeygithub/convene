@@ -1,19 +1,30 @@
-// services/auth.js
+// Auth.js
+import userDatabase from './users';
 
 const Auth = {
-  // Simulate login logic
-  login: () => {
-    // Implement your login logic here
-    // Return user object with isAdmin property
-    return {
-      username: 'exampleUser',
-      isAdmin: true, // or false based on the user's role or permissions
-    };
+  login: (username, password) => {
+    const user = userDatabase.find(
+      (u) => u.username === username && u.password === password
+    );
+
+    if (user) {
+      // Set user information in localStorage or a secure storage mechanism
+      localStorage.setItem('user', JSON.stringify(user));
+      return user;
+    }
+
+    return null;
   },
 
-  // Simulate logout logic
   logout: () => {
-    // Implement your logout logic here
+    // Clear user information from localStorage or secure storage
+    localStorage.removeItem('user');
+  },
+
+  getCurrentUser: () => {
+    // Retrieve user information from localStorage or secure storage
+    const userString = localStorage.getItem('user');
+    return userString ? JSON.parse(userString) : null;
   },
 };
 
