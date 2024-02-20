@@ -26,15 +26,16 @@ const SignIn = () => {
   const checkExistingUser = async () => {
     try {
       // Make a GET request to check if the user exists
-      // const response = await fetch(`http://localhost:3002/${formData.username}`);
-       const response = await fetch(`http://localhost:3002//:username`);
+ const response = await fetch(`http://localhost:3002/${formData.username}`);
+      //  const response = await fetch(`http://localhost:3002//:username`);
       
       if (response.ok) {
         // The user exists, you can proceed with login
-        setShowModal(false);
+        // setShowModal(false);
         return true;
       } else {
         // The user doesn't exist, show the modal
+         console.error('User does not exist:', response.statusText);
         setShowModal(true);
         return false;
       }
