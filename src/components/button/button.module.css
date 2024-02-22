@@ -1,0 +1,31 @@
+.btn {
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+    font-size: 13px;
+    font-family: inter;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.btn[data-fullwidth="true"] {
+    width: 100%;
+}
+
+.btn[data-variant="primary"] {
+    background: linear-gradient(to left, #127FFF, #0067FF);
+    color: white;
+}
+
+.btn[data-variant="secondary"] {
+    background-color: var(--white);
+    color: var(--pryColor);
+}
+
+.btn[data-size="medium"] {
+    padding: 7px 0px;
+}
+
+.btn[data-size="large"] {
+    padding: 10.5px 16px
+}

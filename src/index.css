@@ -83,8 +83,8 @@ html {
 
   :root {
               --bgColor: #E0E7FA;
-              --pryColor: rgb(64, 123, 255);
-              --secColor: rgb(1, 20, 60);
+              --pryColor: #2ecc71;
+              --secColor: rgb(64, 123, 255);
               --beigeColor: #dedee0;
               --textColor: #1E121E;
               --borderButtom: #a3a2a2;

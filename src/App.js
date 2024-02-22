@@ -13,6 +13,16 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ResetPassword from './pages/ResetPassword';
 
+
+// const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
+//   <Route
+//     {...rest}
+//     render={(props) =>
+//       isAuthenticated ? <Component {...props} /> : <Redirect to="/" />
+//     }
+//   />
+// );
+
 const App = () => {
   const [user, setUser] = useState(null);
 
@@ -35,6 +45,16 @@ const App = () => {
         {isAuthenticated && (
           <Route path="/create-meetup" element={<CreateMeetup />} />
         )}
+        {/* <PrivateRoute
+          path="/create-meetup"
+          component={CreateMeetup}
+          isAuthenticated={isAuthenticated}
+        />
+        <PrivateRoute
+          path="/profile"
+          component={Profile}
+          isAuthenticated={isAuthenticated}
+        /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
