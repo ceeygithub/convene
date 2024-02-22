@@ -51,7 +51,7 @@ The project is divided into two main challenges:
    - Server-side code using Expressjs.
    - API endpoints created to power front-end pages.
    - Continuous Integration with Nodemon.
-   - Hosted on Github Pages.
+   -  Hosted on Heroku.
 
 ## Getting Started
 
