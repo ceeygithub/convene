@@ -198,3 +198,6 @@ color: rgb(0, 255, 98);
 .logoImg{
     width: 80px;
 }
+.error-message{
+    color: rgba(255, 0, 0, 0.721);
+}

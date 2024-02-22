@@ -5,7 +5,8 @@ import '../styles/SignIn.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import SigninSvg from '../assets/13245914_5186395.svg';
-import UserNotExistModal from '../components/UserNotExistModal'; // Import the modal component
+import UserNotExistModal from '../components/modal/UserNotExistModal'; 
+import { CiUser } from "react-icons/ci";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ const SignIn = () => {
     try {
       // Make a GET request to check if the user exists
  const response = await fetch(`http://localhost:3002/${formData.username}`);
-      //  const response = await fetch(`http://localhost:3002//:username`);
+      
       
       if (response.ok) {
         // The user exists, you can proceed with login
@@ -112,18 +113,17 @@ const SignIn = () => {
               </header>
               <form onSubmit={handleSubmit}>
              <div className="inputContainer">
-                   <label className="label" htmlFor="emailAddress">
-                    <img src="https://i.imgur.com/Hn13wvm.png" className="labelIcon" alt="Email Icon" />
-                    <span>Email Address*</span>
-                 </label>
-            <input
-                    type="email"
+                    <label className="label" htmlFor="Username">
+                    <CiUser className="labelIcon" alt="labelIcon" /><span>Username*</span>
+                  </label>
+                  <input
+                    type="text"
                     className="input"
-                    id="emailAddress"
-                    name="username"
+                    id="Username"
+                    placeholder="Enter your Username"
                     value={formData.username}
+                    name="username"
                     onChange={handleInputChange}
-                    placeholder="Enter your Email Address"
                     required
                   />
                 </div>

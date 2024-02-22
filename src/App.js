@@ -20,7 +20,7 @@ const App = () => {
     setUser(Auth.getCurrentUser());
   }, []);
 
-  const isAuthenticated = user;
+  const isAuthenticated = !!user;
   const isAdmin = user?.isAdmin || false;
   return (
     <Router>

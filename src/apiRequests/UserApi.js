@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
-
-
 export const StoreUser = async (data) => {
 
     const navigate = useNavigate();
     try {
+
+        navigate('/profile');
         const response = await fetch("http://localhost:3002/create", {
             method: "POST",
             headers: {
@@ -13,10 +13,11 @@ export const StoreUser = async (data) => {
             },
             body: JSON.stringify(data),
         });
-
+console.log(response);
         if (response.ok) {
             // The signup was successful, you can redirect to the profile page
             navigate('/profile');
+            
             return await response.json();
         } else {
             // Handle errors or show appropriate messages
