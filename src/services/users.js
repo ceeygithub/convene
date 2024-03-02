@@ -1,22 +1,3 @@
-// // models/user.js
-// let users = [];
-
-// const addUser = (username, password) => {
-//     const user = { username, password };
-//     users.push(user);
-//     return user;
-// };
-
-// const getUserByUsername = (username) => {
-//     return users.find((user) => user.username === username);
-// };
-
-// module.exports = {
-//     addUser,
-//     getUserByUsername,
-// };
-
-
 
 let users = [];
 
@@ -24,6 +5,10 @@ const addUser = (username, email, password) => {
     const user = { username, email, password, isAdmin: false }; // Default isAdmin to false
     users.push(user);
     return user;
+};
+
+const getAllUsers = () => {
+    return users;
 };
 
 const getUserByUsername = (username) => {
@@ -41,6 +26,7 @@ const updateUserIsAdmin = (username, isAdmin) => {
 
 module.exports = {
     addUser,
+    getAllUsers,
     getUserByUsername,
     updateUserIsAdmin,
     users, // Export the users array for testing purposes or other use cases

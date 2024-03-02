@@ -14,14 +14,7 @@ import SignUp from './pages/SignUp';
 import ResetPassword from './pages/ResetPassword';
 
 
-// const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
-//   <Route
-//     {...rest}
-//     render={(props) =>
-//       isAuthenticated ? <Component {...props} /> : <Redirect to="/" />
-//     }
-//   />
-// );
+
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -32,10 +25,12 @@ const App = () => {
 
   const isAuthenticated = !!user;
   const isAdmin = user?.isAdmin || false;
+  const isNewUser = !!user?.user;
+
   return (
     <Router>
-      {/* <Navbar isAuthenticated={isAuthenticated} isAdmin={user?.isAdmin || false} /> */}
-      <Navbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
+
+      <Navbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} isNewUser={isNewUser} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
@@ -45,16 +40,7 @@ const App = () => {
         {isAuthenticated && (
           <Route path="/create-meetup" element={<CreateMeetup />} />
         )}
-        {/* <PrivateRoute
-          path="/create-meetup"
-          component={CreateMeetup}
-          isAuthenticated={isAuthenticated}
-        />
-        <PrivateRoute
-          path="/profile"
-          component={Profile}
-          isAuthenticated={isAuthenticated}
-        /> */}
+     
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

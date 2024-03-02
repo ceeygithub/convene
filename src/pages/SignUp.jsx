@@ -1,71 +1,66 @@
-
-import React, { useState } from 'react';
-import SignupSvg from '../assets/Sign up-bro.svg';
+import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { CiUser } from "react-icons/ci";
-import { StoreUser } from '../apiRequests/UserApi';
+import { CiMail } from "react-icons/ci";
+import { PiLockKeyThin } from "react-icons/pi";
+import SignupSvg from '../assets/Sign up-bro.svg';
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
-
-  const [error, setError] = useState('');
-
   const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const validationSchema = Yup.object({
+    username: Yup.string().required('Username is required'),
+    email: Yup.string().email('Invalid email address').required('Email is required'),
+    password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      email: '',
+      password: '',
+    },
+    validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const response = await fetch('http://localhost:3002/login/signup', {
+          // mode: 'no-cors',
+        method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+        });
 
-    try {
-      // Call the StoreUser function to handle user creation
-      const userCreated = await StoreUser(formData);
-
-      if (userCreated) {
-        // If user creation is successful, navigate to the profile page
-        navigate('/profile');
-      } else {
-        // Handle other scenarios, if needed
+        if (response.ok) {
+          navigate('/profile');
+        } else {
+          throw new Error('Response not OK');
+        }
+      } catch (error) {
+        console.error('Error during user creation:', error);
+        formik.setFieldError('submit', 'Registration failed. Please check your information and try again.');
       }
-
-    } catch (error) {
-      console.log('Error during user creation:', error);
-      // Handle errors or show appropriate messages
-      setError('Registration failed. Please check your information and try again.');
-    }
-  };
-
-  const handleSignIn = () => {
-    // Redirect to the sign-in page
-    navigate('/signin');
-  };
+    },
+  });
 
   return (
     <>
       <div className="LoginPageContainer">
         <div className="LoginPageInnerContainer">
           <div className="ImageContianer">
-            <img src={SignupSvg} className="GroupImage" alt="GroupImage"/>
+            <img src={SignupSvg} className="GroupImage" alt="GroupImage" />
           </div>
           <div className="LoginFormContainer">
             <div className="LoginFormInnerContainer">
-              <div className="LogoContainer">
-              </div>
+              <div className="LogoContainer"></div>
               <header className="header">Sign Up</header>
               <header className="subHeader">Welcome to <b>Convene!</b> Please Enter your Details</header>
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={formik.handleSubmit}>
                 <div className="inputContainer">
                   <label className="label" htmlFor="Username">
                     <CiUser className="labelIcon" alt="labelIcon" /><span>Username*</span>
@@ -75,55 +70,48 @@ const SignUp = () => {
                     className="input"
                     id="Username"
                     placeholder="Enter your Username"
-                    value={formData.username}
-                    name="username"
-                    onChange={handleInputChange}
-                    required
+                    {...formik.getFieldProps('username')}
                   />
+                  {formik.touched.username && formik.errors.username && <div className="error-message">{formik.errors.username}</div>}
                 </div>
                 <div className="inputContainer">
                   <label className="label" htmlFor="emailAddress">
-                    <img src="https://i.imgur.com/Hn13wvm.png" className="labelIcon" alt="labelIcon"/>
+                    <CiMail className="labelIcon" alt="labelIcon" />
                     <span>Email Address*</span>
                   </label>
                   <input
                     type="email"
                     className="input"
                     id="emailAddress"
-                    name="email"
                     placeholder="Enter your Email Address"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
+                    {...formik.getFieldProps('email')}
                   />
+                  {formik.touched.email && formik.errors.email && <div className="error-message">{formik.errors.email}</div>}
                 </div>
                 <div className="inputContainer">
                   <label className="label" htmlFor="password">
-                    <img src="https://i.imgur.com/g5SvdfG.png" className="labelIcon" alt="labelIcon"/>
+                    <PiLockKeyThin className="labelIcon" alt="Password Icon" />
                     <span>Password*</span>
                   </label>
                   <input
                     type="password"
-                    name="password"
                     className="input"
                     id="password"
                     placeholder="Enter your Password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    required
+                 
+                    {...formik.getFieldProps('password')}
                   />
+                  {formik.touched.password && formik.errors.password && <div className="error-message">{formik.errors.password}</div>}
                 </div>
 
                 <button className="LoginButton" type="submit" id='SignUP'>Create Account</button>
 
-                {error && <div className="error-message">{error}</div>}
-
+                {formik.errors.submit && <div className="error-message">{formik.errors.submit}</div>}
               </form>
 
-              <Link to="/signin" className="SignInLink" onClick={handleSignIn}>
+              <Link to="/signin" className="SignInLink">
                 Already have an account? <b> Sign In</b>
               </Link>
-
             </div>
           </div>
         </div>

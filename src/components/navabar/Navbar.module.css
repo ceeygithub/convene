@@ -10,6 +10,7 @@
                 align-items: center;
                      justify-content: center;
                      vertical-align: middle;
+                     z-index: 999;
     /* Adjust padding as needed */
 }
 
@@ -20,10 +21,10 @@
     max-width: 1200px;
     margin: 0 auto;
 padding-top: 0.5rem;
-  
+font-size: 1.3rem;
 }
 .logoImg{
-width: 4rem;
+width: 8rem;
 height: auto;
 }
 .navbarLogo {
@@ -61,7 +62,7 @@ height: auto;
         border-radius: 20px;
         font-weight: bold;
         color: white;
-        background-color: #2ecc71;
+        background-color: #38C585;
         border: 0px;
         outline: 0px;
         cursor: pointer;
