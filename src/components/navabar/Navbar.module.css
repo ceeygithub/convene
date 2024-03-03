@@ -2,16 +2,16 @@
 .navbar {
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
         height: 75px;
-            position: fixed;
-                top: 0;
-                width: 100%;
-                align-items: center;
-                     justify-content: center;
-                     vertical-align: middle;
-                     z-index: 999;
-    /* Adjust padding as needed */
+       position: fixed;
+        top: 0;
+         width: 100%;
+          align-items: center;
+           justify-content: center;
+        vertical-align: middle;
+         z-index: 999;
+        
+
 }
 
 .navbarContainer {
@@ -21,29 +21,25 @@
     max-width: 1200px;
     margin: 0 auto;
 padding-top: 0.5rem;
-font-size: 1.3rem;
+font-size: 1rem;
 }
 .logoImg{
 width: 8rem;
 height: auto;
+
 }
-.navbarLogo {
+
+.navbarLinks{
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
 }
-
-/* .navbarLinks {
-    display: flex;
-  
-} */
-
 .navbarLink {
+    display: flex;
+    flex-direction: column;
     margin-right: 20px;
     color: #333;
+    justify-content: center;
+    align-items: center;
     /* Set link color */
     text-decoration: none;
     font-weight: bold;
@@ -53,7 +49,7 @@ height: auto;
 }
 
 .navbarLink:hover {
-    color: #ff4500;
+    color: #017e03;
     /* Change color on hover */
 }
 .signin{
@@ -68,4 +64,14 @@ height: auto;
         cursor: pointer;
         text-align: center;
         
+}
+.signup{
+    width: 200px;
+        padding: 10px;
+        font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+                border: 0px;
+                    outline: 0px;
+            /* background-color: #38C585; */
 }

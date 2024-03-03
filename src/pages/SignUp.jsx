@@ -57,8 +57,8 @@ const SignUp = () => {
           <div className="LoginFormContainer">
             <div className="LoginFormInnerContainer">
               <div className="LogoContainer"></div>
-              <header className="header">Sign Up</header>
-              <header className="subHeader">Welcome to <b>Convene!</b> Please Enter your Details</header>
+          
+              <header className="header">Welcome to <b>Convene!</b> <br/>Please Enter your Details</header>
 
               <form onSubmit={formik.handleSubmit}>
                 <div className="inputContainer">

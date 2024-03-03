@@ -174,9 +174,20 @@ const SignIn = () => {
       password: '',
     },
     validationSchema,
-    onSubmit: async (values) => {
-navigate('/profile');
-}
+     onSubmit: async (values) => {
+      // In a real-world scenario, you would perform server-side authentication here
+      // For simplicity, let's assume authentication is successful
+      const user = {
+        username: values.username,
+        // Add other user details as needed
+      };
+
+      // Save user information in local storage
+      localStorage.setItem('user', JSON.stringify(user));
+
+      // Navigate to the profile page
+      navigate('/UserProfile');
+    },
      
   });
 const handleReset = () => {
@@ -194,9 +205,9 @@ const handleReset = () => {
           </div>
           <div className="LoginFormContainer">
             <div className="LoginFormInnerContainer">
-              <header className="header">Sign in</header>
-              <header className="subHeader">
-                Welcome back to <b>Convene!</b> Please Enter your Details
+            
+              <header className="header">
+                Hi, Welcome back to <b>Convene!</b> <br/> Please Enter your Details
               </header>
               <form onSubmit={formik.handleSubmit}>
                 <div className="inputContainer">

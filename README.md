@@ -45,6 +45,7 @@ The project is divided into two main challenges:
 1. **Challenge One: UI Templates**
    - Located in the `UI` directory.
    - UI templates built with HTML, CSS, and React.
+    -Form validation with formik and yup.
    - Hosted on GitHub Pages.
 
 2. **Challenge Two: API Endpoints**

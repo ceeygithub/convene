@@ -13,7 +13,7 @@
 }
 
 .btn[data-variant="primary"] {
-    background: linear-gradient(to left, #127FFF, #0067FF);
+    background: var(--pryColor);
     color: white;
 }
 
