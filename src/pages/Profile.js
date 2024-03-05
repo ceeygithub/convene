@@ -87,7 +87,7 @@ const Profile = () => {
     const handleClick = () => {
         if (selectedInterests.length > 0) {
             // Navigate only if at least one interest is selected
-            navigate('/UserProfile');
+            navigate('/userprofile', { state: { selectedInterests } });
         }
     };
 

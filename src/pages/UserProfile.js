@@ -1,82 +1,79 @@
-
- import React from 'react';
-// import  {  useNavigate } from 'react-router-dom';
-import {Link}  from 'react-router-dom';
-import UserProfileCss from '.././styles/UserProfile.module.css';
-// import Button from '../components/button/Button'
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import UserProfileCss from '../styles/UserProfile.module.css';
+import { FaThumbsUp } from "react-icons/fa";
 
 
 const UserProfile = () => {
+    // const [profileHeight, setProfileHeight] = useState(100); // Initial height in vh
+
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const scrolledHeight = window.scrollY;
+    //         setProfileHeight(Math.max(0, 100 - scrolledHeight * 0.5)); // Ensure height is not negative
+    //     };
+
+    //     window.addEventListener('scroll', handleScroll);
+
+    //     return () => {
+    //         // Cleanup: remove the event listener when the component is unmounted
+    //         window.removeEventListener('scroll', handleScroll);
+    //     };
+    // }, []); // Empty dependency array to run the effect only once on mount
+
+    const { state } = useLocation();
+    const selectedInterests = state?.selectedInterests || [];
+    const [questions, setQuestions] = useState([
+        { id: 1, text: 'What is your favorite book?', upvotes: 0 },
+        { id: 2, text: 'Do you enjoy outdoor activities?', upvotes: 0 },
+   
+    ]);
+    
+
+    const handleUpvote = (questionId) => {
+        setQuestions((prevQuestions) =>
+            prevQuestions.map((question) =>
+                question.id === questionId ? { ...question, upvotes: question.upvotes + 1 } : question
+            )
+        );
+    };
+
     return (
-        <div className='container'>
-          
-            <main>
-                <section>
-                    <h2>Little about me</h2>
+        < div className={UserProfileCss.container}  >
+            <div className={UserProfileCss.profileContainer}>
+                <h2 className={UserProfileCss.interestHeading}>Your Picked Interests:</h2>
+                <ul className={UserProfileCss.interestList}>
+                    {selectedInterests.map((interest, index) => (
+                        <li key={index}>
+                            <p>{interest.name}</p>
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
-                    <p><strong>Designer is a person who makes designs for objects.</strong> <br /> ... More formally, a designer is an agent that "specifies the structural properties of a design object". In practice, anyone who creates tangible or intangible objects, products,
-                        processes, laws, games, graphics, services, and experiences is referred to as a designer.</p>
-                    <br />
-                    <br />
-                    <h2>What is Lorem Ipsum?</h2>
-
-                    <ol>
-                        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                        <li>Aliquam tincidunt mauris eu risus.</li>
-                    </ol>
-                    <br />
-                    <br />
-                    <h2>Photographs</h2>
-                    <br />
-                    <div className="row">
-                        <div className="col-md-4">
-                            <div className="card-content">
-                                <div className="card-img">
-                                    <img src="https://placeimg.com/640/480/nature?t=1558481156602" alt="" />
-                                    <span><h4>Heading</h4></span>
-                                </div>
-                                <div className="card-desc">
-                                    <h3>Heading</h3>
-                                    <p>The words nature and natural are used for all the things that are normally not made by humans. Things like weather, organisms, landforms, celestial bodies and much more are part of nature. ...</p>
-                                  
-                                    <Link to="#" className="btn-card">Read more</Link>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="{UserProfile[card - content]}">
-                                <div className="card-img">
-                                    <img src="https://placeimg.com/640/480/nature?t=1558481196666" alt="" />
-                                    <span><h4>Heading2</h4></span>
-                                </div>
-                                <div className="card-desc">
-                                    <h3>Heading2</h3>
-                                    <p>The words nature and natural are used for all the things that are normally not made by humans. Things like weather, organisms, landforms, celestial bodies and much more are part of nature. ...</p>
-                                    
-
-                                    <Link to="#" className="btn-card">Read more</Link>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="card-content">
-                                <div className="card-img">
-                                    <img src="https://placeimg.com/640/480/nature?t=1558481287512" alt="" />
-                                    <span><h4>Heading3</h4></span>
-                                </div>
-                                <div className="card-desc">
-                                    <h3>Heading3</h3>
-                                    <p>The words nature and natural are used for all the things that are normally not made by humans. Things like weather, organisms, landforms, celestial bodies and much more are part of nature. ...</p>
-
-                                    <Link to="#" className="btn-card">Read more</Link>
-                                </div>
-                            </div>
-                        </div>
+            <div className={UserProfileCss.eventsContainer}>
+                <div class="cardOne">
+                    <div class="photo">
+                        <img src="https://images.pexels.com/photos/7550298/pexels-photo-7550298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            alt=""/>
                     </div>
-                </section>
-            </main>
+                </div>
+                <div className='cardTwo'>
+                    <p>date of event</p>
+                    <ul>
+                        {questions.map((question) => (
+                            <li key={question.id}>
+                                <p>{question.text}</p>
+                                <button onClick={() => handleUpvote(question.id)}> <FaThumbsUp />Upvote ({question.upvotes})</button>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            
+            </div>
         </div>
     );
 };
 
- export default UserProfile;
+export default UserProfile;
+

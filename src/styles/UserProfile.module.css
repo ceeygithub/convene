@@ -1,19 +1,42 @@
-menu {
-    width: 260px;
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+.profileContainer {
+    width: 300px;
     position: fixed;
     padding: 0;
     z-index: 10;
-    height: calc(100% - 100px);
+    /* height: 100vh; */
+    height: calc(100vh - 100px);
     overflow-y: auto;
     background: #D6D6D4;
-    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
-
-    top: 0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.132);
+    top: 11%;
     left: 60px;
     margin: 0;
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items:center ;
+
+}
+.interestHeading{
+    line-height: 1.5;
+    margin-bottom: 1rem;
 }
 
+.interestList{
+    list-style: none;
+}
+
+.eventsContainer{
+    display: flex;
+}
 ul {
     clear: both;
     float: unset;

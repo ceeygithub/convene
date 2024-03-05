@@ -29,6 +29,9 @@ const DropdownAvatar = ({ onLogout, onCloseDropdown, isAdmin }) => {
           <Link to="/UserProfile" className={AvatarCss.dropdownLink} onClick={closeDropdown}>
             Profile
           </Link>
+                    <Link to="/profile" className={AvatarCss.dropdownLink} onClick={closeDropdown}>
+         Interests
+          </Link>
           {/* Add more dropdown items as needed */}
           <Link to="/" className={AvatarCss.dropdownLink} onClick={closeDropdown}>
           Home

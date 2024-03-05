@@ -174,21 +174,44 @@ const SignIn = () => {
       password: '',
     },
     validationSchema,
-     onSubmit: async (values) => {
-      // In a real-world scenario, you would perform server-side authentication here
-      // For simplicity, let's assume authentication is successful
-      const user = {
-        username: values.username,
-        // Add other user details as needed
-      };
+  //    onSubmit: async (values) => {
+  //     // In a real-world scenario, you would perform server-side authentication here
+  //     // For simplicity, let's assume authentication is successful
+  //     const user = {
+  //       username: values.username,
+  //       // Add other user details as needed
+  //     };
 
-      // Save user information in local storage
-      localStorage.setItem('user', JSON.stringify(user));
+  //     // Save user information in local storage
+  //     localStorage.setItem('user', JSON.stringify(user));
 
-      // Navigate to the profile page
-      navigate('/UserProfile');
-    },
+  //     // Navigate to the profile page
+  //     navigate('/UserProfile');
+  //   },
      
+  // });
+      onSubmit: async (values) => {
+      try {
+   const response = await fetch('http://localhost:3002/user/login', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(values),
+});
+
+
+        if (response.ok) {
+          navigate('/UserProfile');
+        } else {
+          console.error('Error during signup:', response.statusText);
+          throw new Error('Response not OK');
+        }
+      } catch (error) {
+        console.error('Error during user creation:', error);
+        formik.setFieldError('submit', 'Registration failed. Please check your information and try again.');
+      }
+    },
   });
 const handleReset = () => {
     navigate('/ResetPassword');

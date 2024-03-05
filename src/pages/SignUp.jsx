@@ -26,18 +26,19 @@ const SignUp = () => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        const response = await fetch('http://localhost:3002/login/signup', {
-          // mode: 'no-cors',
-        method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(values),
-        });
+   const response = await fetch('http://localhost:3002/user/signup', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(values),
+});
+
 
         if (response.ok) {
           navigate('/profile');
         } else {
+          console.error('Error during signup:', response.statusText);
           throw new Error('Response not OK');
         }
       } catch (error) {

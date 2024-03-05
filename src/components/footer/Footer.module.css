@@ -4,6 +4,8 @@
     background-color: rgb(33, 33, 33);
     color: #fff;
     padding: 20px 0;
+    z-index: 9999;
+    /* height: 500px; */
 }
 
 .footerContent {
