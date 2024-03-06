@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import UserProfileCss from '../styles/UserProfile.module.css';
 import { FaThumbsUp } from "react-icons/fa";
+import Div100vh from 'react-div-100vh';
 
 
 const UserProfile = () => {
@@ -40,7 +41,8 @@ const UserProfile = () => {
 
     return (
         < div className={UserProfileCss.container}  >
-            <div className={UserProfileCss.profileContainer}>
+            <Div100vh className={UserProfileCss.profileContainer}>
+         
                 <h2 className={UserProfileCss.interestHeading}>Your Picked Interests:</h2>
                 <ul className={UserProfileCss.interestList}>
                     {selectedInterests.map((interest, index) => (
@@ -49,16 +51,17 @@ const UserProfile = () => {
                         </li>
                     ))}
                 </ul>
-            </div>
+       
+             </Div100vh>
 
             <div className={UserProfileCss.eventsContainer}>
-                <div class="cardOne">
-                    <div class="photo">
+                <div className={UserProfileCss.eventsContainer}>
+                    <div >
                         <img src="https://images.pexels.com/photos/7550298/pexels-photo-7550298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                            alt=""/>
+                            alt="" className={UserProfileCss.image}/>
                     </div>
                 </div>
-                <div className='cardTwo'>
+                <div className={UserProfileCss.sideContainer}>
                     <p>date of event</p>
                     <ul>
                         {questions.map((question) => (

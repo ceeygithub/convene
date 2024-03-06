@@ -50,6 +50,7 @@ The project is divided into two main challenges:
 
 2. **Challenge Two: API Endpoints**
    - Server-side code using Expressjs.
+      - Server-side database using sql lite.
    - API endpoints created to power front-end pages.
    - Continuous Integration with Nodemon.
    -  Hosted on Heroku.

@@ -3,6 +3,7 @@
 import React from 'react';
 import Hero from '../components/hero/Hero';
 import JoinSection from '../components/joinSection/Join';
+import Footer from '../components/footer/Footer'
 
 
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
             {/* <Navbar /> */}
             <Hero />
             <JoinSection />
-            {/* <Footer/> */}
+            <Footer/>
            
         </div>
     );

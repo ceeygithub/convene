@@ -21,6 +21,7 @@ const DropdownAvatar = ({ onLogout, onCloseDropdown, isAdmin }) => {
 // const profileLink = isAdmin ? '/admin-profile' : '/profile';
 
   return (
+    
 <div className={AvatarCss.avatarContainer }onClick={handleAvatarClick}>
       <img src='https://images.pexels.com/photos/4754648/pexels-photo-4754648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt="Avatar" className='avatarImg'  style={{width: '1.5rem', borderRadius:'100%'}}/>
       <MdKeyboardArrowDown />
