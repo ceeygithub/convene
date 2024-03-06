@@ -99,7 +99,7 @@ const Navbar = () => {
         <Link to="/" className={NavCSS.navbarLogo}>
           <img src={logoImg} alt="" className={NavCSS.logoImg} />
         </Link>
-        {Auth.isAuthenticated() && (
+        {Auth.isAuthenticated && (
           <>
             <SearchBar onChange={handleSearch} />
             <div className={NavCSS.navbarLinks}>
@@ -116,11 +116,11 @@ const Navbar = () => {
                 onLogout={handleLogout}
                 onCloseDropdown={() => {}}
               />
-              {Auth.isAdmin() && <Link to="/create-meetup">Create Meetup</Link>}
+              {Auth.isAdmin && <Link to="/create-meetup">Create Meetup</Link>}
             </div>
           </>
         )}
-        {!Auth.isAuthenticated() && (
+        {!Auth.isAuthenticated && (
           <div className={NavCSS.navbarLinks}>
             <Link to="/signup" className={`${NavCSS.navbarLink} ${NavCSS.signup}`}>
               Sign Up
