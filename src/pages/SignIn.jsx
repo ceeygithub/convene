@@ -26,29 +26,59 @@ const SignIn = () => {
     },
     validationSchema,
   
-      onSubmit: async (values) => {
-      try {
-   const response = await fetch('http://localhost:3002/user/login',{
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
+//       onSubmit: async (values) => {
+//       try {
+//    const response = await fetch('http://localhost:3002/user/login',{
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify(values),
+// });
+
+
+//         if (response.ok) {
+//           navigate('/UserProfile');
+//         } else {
+//           console.error('Error during signup:', response.statusText);
+//           throw new Error('Response not OK');
+//         }
+//       } catch (error) {
+//         console.error('Error during user creation:', error);
+//         formik.setFieldError('submit', 'Registration failed. Please check your information and try again.');
+//       }
+//     },
+
+onSubmit: async (values) => {
+    try {
+      const response = await fetch('http://localhost:3002/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        const userData = await response.json();
+
+        // Save user data in local storage
+        localStorage.setItem('userToken', userData.token);
+        localStorage.setItem('user', JSON.stringify(userData.user));
+
+        // Navigate to UserProfile page
+        navigate('/UserProfile');
+      } else {
+        console.error('Error during login:', response.statusText);
+        throw new Error('Response not OK');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      formik.setFieldError('submit', 'Login failed. Please check your information and try again.');
+    }
   },
-  body: JSON.stringify(values),
 });
 
-
-        if (response.ok) {
-          navigate('/UserProfile');
-        } else {
-          console.error('Error during signup:', response.statusText);
-          throw new Error('Response not OK');
-        }
-      } catch (error) {
-        console.error('Error during user creation:', error);
-        formik.setFieldError('submit', 'Registration failed. Please check your information and try again.');
-      }
-    },
-  });
 const handleReset = () => {
     navigate('/ResetPassword');
   };

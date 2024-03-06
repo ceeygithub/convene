@@ -1,54 +1,45 @@
 
-// import React, { createContext, useContext, useState } from 'react';
-
-// const AuthContext = createContext();
-
-// export const AuthProvider = ({ children }) => {
-//     const [user, setUser] = useState(null);
-
-//     const value = {
-//         user,
-//         setUser,
-//         // other context values if needed
-//     };
-
-//     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-// };
-
-// export const useAuth = () => {
-//     const context = useContext(AuthContext);
-//     if (!context) {
-//         throw new Error('useAuth must be used within an AuthProvider');
-//     }
-//     return context;
-// };
-
-// useAuth.js
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import Auth from '../services/Auth';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+  
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await fetch('http://localhost:3002/user/login');
-                if (response.ok) {
-                    const userData = await response.json();
-                    setUser(userData);
+                // Check if there is a user in local storage
+                const storedUser = JSON.parse(localStorage.getItem('user'));
+
+                if (storedUser) {
+                    setUser(storedUser);
+                } else {
+                    // If no user in local storage, make the API call
+                    const response = await fetch('http://localhost:3002/user/login');
+                    if (response.ok) {
+                        const userData = await response.json();
+                        setUser(userData);
+
+                        // Save the user data to local storage
+                        localStorage.setItem('user', JSON.stringify(userData));
+                    } else {
+                        console.error('Error fetching user - Server responded with error:', response.statusText);
+                    }
                 }
             } catch (error) {
-                console.error('Error fetching user:', error);
+                console.error('Error fetching user - Network error or exception:', error);
             }
         };
 
         fetchUser();
     }, []);
+
+ 
+
 
     const login = (userData) => {
         setUser(userData);
@@ -60,10 +51,15 @@ export const AuthProvider = ({ children }) => {
         Auth.clearAuthData();
     };
 
+    const isAdmin = () => {
+        // Check if the user has admin privileges based on your user data structure
+        return user && user.role === 'admin';
+    };
     const value = {
         user,
         login,
         logout,
+        isAdmin
     };
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
