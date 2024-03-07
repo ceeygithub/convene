@@ -7,7 +7,7 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 // import Auth from '.././services/Auth';
 
 
-const DropdownAvatar = ({ onLogout, onCloseDropdown, isAdmin }) => {
+const DropdownAvatar = ({ onLogout, onCloseDropdown }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleAvatarClick = () => {
@@ -51,7 +51,7 @@ const DropdownAvatar = ({ onLogout, onCloseDropdown, isAdmin }) => {
 };
 
 DropdownAvatar.propTypes = {
-     isAdmin: PropTypes.bool.isRequired,
+    //  isAdmin: PropTypes.bool.isRequired,
   onLogout: PropTypes.func.isRequired,
   onCloseDropdown: PropTypes.func.isRequired,
 };
